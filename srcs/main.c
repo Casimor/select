@@ -6,15 +6,24 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 14:17:03 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/14 14:19:40 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/14 17:07:12 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
 
-int			main(int ac, char **av)
+static void		usage(char *name)
+{
+	ft_putstr_fd("usage: ", 2);
+	ft_putstr_fd(name, 2);
+	ft_putendl_fd(" \"args ...\"", 2);
+}
+
+int				main(int ac, char **av)
 {
 	if (ac > 1)
-		ft_putstr(av[1]);
+		ft_select(av);
+	else
+		usage(av[0]);
 	return (0);
 }

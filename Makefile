@@ -6,7 +6,7 @@
 #    By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/25 18:16:27 by bchevali          #+#    #+#              #
-#    Updated: 2016/03/14 14:15:43 by bchevali         ###   ########.fr        #
+#    Updated: 2016/03/14 15:13:30 by bchevali         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,10 @@ LIBFT_INCLUDE_DIR	=	$(LIBFT_DIR)/includes
 COMPILER			=	gcc
 CFLAGS				=	-Wall -Wextra -Werror -c\
 						-I$(INCLUDE_DIR) -I$(LIBFT_INCLUDE_DIR)
-LFLAGS				=	-L$(LIBFT_DIR) -l$(LIBFT)
+LFLAGS				=	-L$(LIBFT_DIR) -l$(LIBFT) -ltermcap
 
-SRC					=	main.c
+SRC					=	main.c			\
+						select.c
 
 OBJ					=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

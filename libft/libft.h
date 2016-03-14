@@ -6,7 +6,7 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/23 21:49:31 by bchevali          #+#    #+#             */
-/*   Updated: 2016/01/27 15:01:27 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/14 16:37:07 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,9 @@ char				*ft_utoa(size_t n);
 int					fill_split(const char *s, char **str, int *c);
 char				*ft_itoa_base(size_t n, char *base);
 size_t				ft_get_maxsize(t_dlist *dlist);
-void				ft_free_tab(char **tab);
-void				ft_tab_foreach(char **tab, t_tabf f, void *data);
-int					ft_tablen(char **tab);
+void				ft_free_tab(char **t);
+void				ft_tab_foreach(char **t, t_tabf f, void *data);
+int					ft_tablen(char **t);
 char				*ft_strunion(char **str_array, char c);
 int					ignore_whitespace(char **line);
 void				ft_array_free(char **array);
