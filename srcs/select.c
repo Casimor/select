@@ -6,55 +6,57 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 15:12:14 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/14 18:42:42 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/15 15:01:11 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
 
-static int		get_term(t_term *term)
+t_data	g_dt;
+
+static t_dlist		*stock_av(char **av)
+{
+	t_dlist		*dlst;
+	int			i;
+
+	i = 1;
+	dlst = NULL;
+	while (av[i])
+	{
+		ft_lstd_pushback(&dlst, ft_lstd_new(av[i], ft_strlen(av[i]) + 1));
+		++i;
+	}
+	return (dlst);
+}
+
+static int			init_term(t_term *term)
 {
 	const char			*var_term;
 
 	var_term = getenv("TERM");
-	if (var_term)
+	if (!tgetent(0, var_term))
 	{
-		if (tgetent(0, var_term))
-		{
-			if (tcgetattr(0, term) != -1)
-				return (1);
-		}
+		ft_putendl_fd("./ft_select: \'TERM\' not found", 2);
+		return (0);
 	}
-	return (0);
-}
-
-static void		init_term(t_term *term)
-{
+	tcgetattr(0, term);
 	term->c_lflag &= ~(ICANON);
 	term->c_lflag &= ~(ECHO);
-	term->c_cc[VMIN] = 1;
-	term->c_cc[VTIME] = 0;
-	tcsetattr(0, TCSADRAIN, term);
+	tcsetattr(0, 0, term);
+	ft_memcpy(&g_dt.term_save, term, sizeof(t_term));
+	return (1);
 }
 
-int				fputchar(int c)
-{
-	ft_putchar(c);
-	return (0);
-}
-
-void			ft_select(char **av)
+void				ft_select(char **av)
 {
 	t_term		term;
-//	t_dlist		dlst;
+	t_dlist		*dlst;
 
 	(void)av;
-	if (!get_term(&term))
+	if (!init_term(&term))
 		return ;
-	init_term(&term);
+	dlst = stock_av(av);
+	g_dt.dlist = dlst;
+	g_dt.ptr = dlst;
 	// init signaux
-	char		*res;
-
-	res = tgetstr("cl", NULL);
-	tputs(res, 0, fputchar);
 }
