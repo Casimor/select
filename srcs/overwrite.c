@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   overwrite.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/04/23 19:59:03 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/15 16:20:27 by bchevali         ###   ########.fr       */
+/*   Created: 2016/03/15 19:37:51 by bchevali          #+#    #+#             */
+/*   Updated: 2016/03/15 20:05:17 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "select.h"
 
-void	*ft_memalloc(size_t size)
+extern t_data	g_dt;
+
+void		overwrite(t_dlist *dlist)
 {
-	void	*mem;
+	t_dlist		*tmp;
 
-	mem = malloc(size);
-	if (mem == 0)
-		return (NULL);
-	ft_bzero(mem, size);
-	return (mem);
+	tmp = dlist;
+	while (tmp != dlist->next)
+	{
+		printf("%s\n", tmp->content);
+		tmp = tmp->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 14:18:15 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/15 13:56:52 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/15 20:00:36 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ typedef struct	termios	t_term;
 typedef	struct	s_data
 {
 	t_term		term_save;
+	t_dlist		*ptr;
+	t_dlist		*dlist;
 }				t_data;
 
-void		ft_select(char **av);
-
+void			ft_select(char **av);
+void			init_signal(void);
+void			overwrite(t_dlist *dlist);
 
 #endif

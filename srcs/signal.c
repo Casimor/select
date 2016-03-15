@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/04/23 19:59:03 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/15 16:20:27 by bchevali         ###   ########.fr       */
+/*   Created: 2016/03/15 16:23:53 by bchevali          #+#    #+#             */
+/*   Updated: 2016/03/15 16:40:40 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "select.h"
 
-void	*ft_memalloc(size_t size)
+extern t_data	g_dt;
+
+static void		ft_sigint(int sig)
 {
-	void	*mem;
+	(void)sig;
+}
 
-	mem = malloc(size);
-	if (mem == 0)
-		return (NULL);
-	ft_bzero(mem, size);
-	return (mem);
+static void		ft_sigtstp(int sig)
+{
+	(void)sig;
+}
+
+static void		ft_sigcont(int sig)
+{
+	(void)sig;
+}
+
+void			init_signal(void)
+{
+	signal(SIGINT, ft_sigint);
+	signal(SIGTSTP, ft_sigtstp);
+	signal(SIGCONT, ft_sigcont);
 }
