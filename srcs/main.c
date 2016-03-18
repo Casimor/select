@@ -6,7 +6,7 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 14:17:03 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/14 17:07:12 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/18 13:40:16 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		usage(char *name)
 {
 	ft_putstr_fd("usage: ", 2);
 	ft_putstr_fd(name, 2);
-	ft_putendl_fd(" \"args ...\"", 2);
+	ft_putendl_fd(" \"args1 args2 ..\"", 2);
 }
 
 int				main(int ac, char **av)

@@ -6,7 +6,7 @@
 #    By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/25 18:16:27 by bchevali          #+#    #+#              #
-#    Updated: 2016/03/15 20:00:10 by bchevali         ###   ########.fr        #
+#    Updated: 2016/03/18 16:26:56 by bchevali         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ LFLAGS				=	-L$(LIBFT_DIR) -l$(LIBFT) -ltermcap
 SRC					=	main.c			\
 						select.c		\
 						signal.c		\
-						overwrite.c
+						overwrite.c		\
+						keys.c
 
 OBJ					=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

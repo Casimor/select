@@ -6,13 +6,62 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 15:12:14 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/15 20:02:29 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/18 17:09:20 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
 
 t_data	g_dt;
+
+static const t_key	g_tab[] = {
+	{UP_KEY, up_key},
+	{DOWN_KEY, down_key},
+	{LEFT_KEY, up_key},
+	{RIGHT_KEY, down_key},
+	{SP_KEY, space_key},
+	// {BS_KEY, del_key},
+	// {DEL_KEY, del_key},
+};
+
+static void				check_key(char *key, t_dlist **dlist, t_dlist **ptr)
+{
+	size_t		i;
+
+	i = 0;
+	while (i < sizeof(g_tab) / sizeof(t_key))
+	{
+		if (!ft_strcmp(g_tab[i].str, key))
+		{
+			g_tab[i].f(dlist, ptr);
+			return ;
+		}
+		++i;
+	}
+}			
+
+static void				read_input(t_dlist *dlist)
+{
+	char		buf[5];
+	int			ret;
+	t_dlist		*ptr;
+
+	ptr = dlist;
+	overwrite(dlist, ptr);
+	while ((ret = read(0, buf, 4)) > 0)
+	{
+		buf[ret] = '\0';
+		check_key(buf, &dlist, &ptr);
+		overwrite(dlist, ptr);
+		if (!ft_strcmp(buf, ESC_KEY))
+			return ;
+		if (!ft_strcmp(buf, NL_KEY))
+		{
+			enter_key(dlist);
+			return ;
+		}
+	}
+}
 
 static t_dlist		*stock_av(char **av)
 {
@@ -47,14 +96,6 @@ static int			init_term(t_term *term)
 	return (1);
 }
 
-static int			fputchar(int c)
-{
-	ft_putchar(c);
-	return (0);
-}
-
-
-
 void				ft_select(char **av)
 {
 	t_term		term;
@@ -63,10 +104,8 @@ void				ft_select(char **av)
 	if (!init_term(&term))
 		return ;
 	dlst = stock_av(av);
-	g_dt.dlist = dlst;
-	g_dt.ptr = dlst;
 	init_signal();
 	tputs(tgetstr("vi", 0), 1, fputchar);
-	overwrite(dlst);
+	read_input(dlst);
 	tputs(tgetstr("ve", 0), 1, fputchar);
 }
