@@ -6,7 +6,7 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 19:37:51 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/18 17:16:03 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/21 17:12:00 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,13 @@ void			overwrite(t_dlist *dlist, t_dlist *ptr)
 {
 	t_dlist		*tmp;
 	size_t		c;
+	size_t		i;
 
 	tmp = dlist;
 	c = ft_lstd_size(dlist);
+	i = c;
+	while (i--)
+		tputs(tgetstr("dl", 0), 1, fputchar);
 	ft_lstd_foreach(dlist, print_dlist, ptr);
 	while (c--)
 		tputs(tgetstr("up", 0), 1, fputchar);

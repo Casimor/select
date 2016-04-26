@@ -6,7 +6,7 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 14:18:15 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/18 17:16:09 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/24 16:12:25 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int				open_tty(void);
 void		up_key(t_dlist **dlist, t_dlist **ptr);
 void		down_key(t_dlist **dlist, t_dlist **ptr);
 void		space_key(t_dlist **dlist, t_dlist **ptr);
+void		del_key(t_dlist **dlist, t_dlist **ptr);
 void		enter_key(t_dlist *dlist);
 
 

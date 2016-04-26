@@ -6,7 +6,7 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 15:12:14 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/18 17:09:20 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/24 16:14:45 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static const t_key	g_tab[] = {
 	{LEFT_KEY, up_key},
 	{RIGHT_KEY, down_key},
 	{SP_KEY, space_key},
-	// {BS_KEY, del_key},
-	// {DEL_KEY, del_key},
 };
 
 static void				check_key(char *key, t_dlist **dlist, t_dlist **ptr)
@@ -60,6 +58,8 @@ static void				read_input(t_dlist *dlist)
 			enter_key(dlist);
 			return ;
 		}
+		if (!ft_strcmp(buf, BS_KEY) || !ft_strcmp(buf, DEL_KEY))
+			del_key(&dlist, &ptr);
 	}
 }
 
@@ -107,5 +107,6 @@ void				ft_select(char **av)
 	init_signal();
 	tputs(tgetstr("vi", 0), 1, fputchar);
 	read_input(dlst);
+	tcsetattr(0, 0, &g_dt.term_save);
 	tputs(tgetstr("ve", 0), 1, fputchar);
 }
